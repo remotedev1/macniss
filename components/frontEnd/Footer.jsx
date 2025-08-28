@@ -1,4 +1,4 @@
-import { Mail, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import Container from "../common/GlobalContainer";
 
@@ -18,6 +18,31 @@ export default function Footer() {
               specializes in building houses tailored to your lifestyle,
               creating a home that&apos;s truly personal to you.
             </p>
+            <div className=" max-w-xl py-5">
+              <div className="grid md:grid-cols-2 gap-8">
+                {[
+                  {
+                    title: "Corporate Office (Bangalore Branch):",
+                    address: "Macniss.Com | Bangalore",
+                    link: "#",
+                  },
+                  {
+                    title: "Kodagu Branch:",
+                    address: "Macniss.Com | Gonicoppa",
+                    link: "#",
+                  },
+                ].map((branch, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col items-start gap-2 border-t md:border-t-0 md:border-l border-gray-200 pt-4 md:pt-0 md:pl-6"
+                  >
+                    <MapPin className="text-yellow-500" />
+                    <h4 className="font-semibold text-white">{branch.title}</h4>
+                    <p className="text-gray-500 text-sm">{branch.address}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="flex flex-row justify-end space-x-5">

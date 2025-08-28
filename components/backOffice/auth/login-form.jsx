@@ -83,12 +83,7 @@ export const LoginForm = () => {
               <span className="flex-shrink-0 text-3xl font-black capitalize tracking-tight opacity-100">
                 admin
               </span>
-              <Image
-                src="/logo.png"
-                alt="Logo"
-                width={50}
-                height={50}
-              />
+              <Image src="/logo.png" alt="Logo" width={50} height={50} />
             </a>
           </div>
           {/* /Logo */}
@@ -133,12 +128,17 @@ export const LoginForm = () => {
               </Button>
             </form>
           </Form>
-          <Link
-            className="mt-16 text-sm text-blue-500 hover:underline"
-            href="/auth/forgot-password"
-          >
-            Forgot your password?
-          </Link>
+          <div className="flex justify-around mt-3">
+            <Link
+              className="text-sm text-blue-500 hover:underline"
+              href="/auth/forgot-password"
+            >
+              Forgot your password?
+            </Link>
+            <Link className="text-sm text-blue-500 hover:underline" href="/">
+              go home?
+            </Link>
+          </div>
         </div>
       </div>
     </div>

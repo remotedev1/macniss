@@ -5,12 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+
 import Container from "@/components/common/GlobalContainer";
 
 // Tabs configuration
@@ -24,7 +19,6 @@ const tabOptions = [
 export default function ProjectsPage() {
   const [selectedTab, setSelectedTab] = useState("COMPLETED");
   const [projects, setProjects] = useState([]);
-  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -133,26 +127,11 @@ export default function ProjectsPage() {
                                 )}
                               </div>
                               <div className="flex items-center gap-4 mt-3">
-                                {/* <a
-                                href={project.siteTourUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="text-red-600 flex items-center gap-2"
-                                >
-                                  Site Tour
-                                </Button>
-                              </a> */}
-
-                                <Button
-                                  onClick={() => setSelectedProject(project)}
-                                  variant="outline"
-                                >
-                                  Project Detail
-                                </Button>
+                                <Link href={`/our-works/${project.id}`}>
+                                  <Button variant="outline">
+                                    Project Detail
+                                  </Button>
+                                </Link>
                               </div>
                             </CardContent>
                           </Card>
@@ -169,38 +148,6 @@ export default function ProjectsPage() {
             </Tabs>
           </div>
         </div>
-        {/* Modal for project details */}
-        <Dialog
-          open={!!selectedProject}
-          onOpenChange={() => setSelectedProject(null)}
-        >
-          <DialogContent className="max-w-2xl">
-            <DialogHeader>
-              <DialogTitle>{selectedProject?.title}</DialogTitle>
-            </DialogHeader>
-            <div className="space-y-2">
-              <Image
-                src={selectedProject?.imageGallery[0]?.url}
-                alt={selectedProject?.title}
-                width={500}
-                height={300}
-                className="w-full h-56 object-cover"
-              />
-              <p>
-                <strong>Name:</strong> {selectedProject?.projectName}
-              </p>
-              <p>
-                <strong>Location:</strong> {selectedProject?.location}
-              </p>
-              <p>
-                <strong>Type:</strong> {selectedProject?.projectType}
-              </p>
-              <p>
-                <strong>Status:</strong> {selectedProject?.status}
-              </p>
-            </div>
-          </DialogContent>
-        </Dialog>
       </Container>
     </div>
   );

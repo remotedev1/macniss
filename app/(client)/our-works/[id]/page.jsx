@@ -25,9 +25,11 @@ export default async function ProjectPage({ params }) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white">
+    <div className="max-w-4xl mx-auto p-6 bg-white py-24">
       <Container>
-        <h1 className="text-3xl font-bold mb-4">{project.projectName}</h1>
+        <h1 className="text-3xl font-bold mb-4">
+          {project.projectName.toUpperCase()}
+        </h1>
         <p className="text-lg text-gray-700 mb-6">
           {project.projectType} in {project.location}
         </p>

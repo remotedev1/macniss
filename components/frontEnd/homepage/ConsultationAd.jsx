@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function ConsultationAd() {
   return (
-    <section className="bg-gray-300 py-5">
+    <section className="bg-white py-16">
       <Container>
         <div className="bg-yellow-500 max-w-4xl mx-auto rounded-2xl  py-12 px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="text-white max-w-xl">

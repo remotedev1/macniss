@@ -21,7 +21,7 @@ export default function RecentWorks() {
   }, []);
 
   return (
-    <section className="py-16 bg-[#FFF9F1] text-gray-800">
+    <section className="py-16 bg-gray-100 text-gray-800">
       <Container>
         <div className=" px-6 text-center">
           <h2 className="text-4xl font-extrabold mb-12">

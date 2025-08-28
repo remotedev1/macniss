@@ -30,7 +30,7 @@ export default function ServicesWeOffer({ show = false }) {
   }, []);
 
   return (
-    <section className="bg-white text-gray-800 pt-16">
+    <section className="bg-gray-100 text-gray-800 pt-16">
       <Container>
         <div className="px-6 text-center">
           <h2 className="text-4xl font-extrabold mb-12">

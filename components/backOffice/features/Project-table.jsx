@@ -468,7 +468,20 @@ export default function ProjectsTable() {
                       variant="outline"
                       className="flex-1"
                       onClick={() => {
-                        form.reset();
+                        form.reset({
+                          projectName: "",
+                          projectType: "RESIDENTIAL",
+                          location: "",
+                          status: "ACTIVE",
+                          overview: "",
+                          objectives: [],
+                          keyFeatures: [],
+                          technologiesUsed: [],
+                          imageGallery: [],
+                          deletedFileIds: [],
+                          youtubeLinks: [],
+                          instagramLinks: [],
+                        });
                         setEditingId(null);
                       }}
                     >
