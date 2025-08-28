@@ -20,7 +20,7 @@ export default function ContactUs() {
                 <Phone size={16} className="text-yellow-400" />
                 <Link
                   href="tel:+919900407628"
-                  className="hover:text-yellow-400"
+                  className="hover:text-yellow-400 text-black"
                 >
                   +91-9900407628
                 </Link>
@@ -29,7 +29,7 @@ export default function ContactUs() {
                 <Mail size={16} className="text-yellow-400" />
                 <Link
                   href="mailto:nihalnachappa1@gmail.com"
-                  className="hover:text-yellow-400"
+                  className="hover:text-yellow-400 text-black"
                 >
                   macnissbuilders@gmail.com
                 </Link>
@@ -40,12 +40,12 @@ export default function ContactUs() {
             {[
               {
                 title: "Corporate Office (Bangalore Branch):",
-                address: "Macnis.Com | Bangalore",
+                address: "Macniss.Com | Bangalore",
                 link: "#",
               },
               {
                 title: "Kodagu Branch:",
-                address: "Macnis.Com | Gonicoppa",
+                address: "Macniss.Com | Gonicoppa",
                 link: "#",
               },
             ].map((branch, index) => (

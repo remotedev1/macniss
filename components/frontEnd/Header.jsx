@@ -108,7 +108,6 @@ export default function Header() {
                   !isFixed ? "text-white" : "text-black"
                 )}
               />
-              <span className="ml-2 text-sm">Login</span>
             </Link>
           )}
         </div>
