@@ -56,7 +56,7 @@ export const RegisterForm = () => {
     });
   };
   return (
-    <CardWrapper 
+    <CardWrapper
       headerLabel="Register New User"
       backButtonLabel="Back to login"
       backButtonHref="/auth/login"

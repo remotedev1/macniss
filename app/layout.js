@@ -9,7 +9,7 @@ export const metadata = {
   openGraph: {
     title: "Macniss - builders private limited",
     description: "builder",
-    url: "https://builder.in/",
+    url: "https://macnissbuilders.in/",
     images: [
       {
         url: "/website-thumbnail.jpg",

@@ -3,24 +3,25 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Menu, User } from "lucide-react";
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"; // adjust path if needed
+import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import clsx from "clsx";
 import Link from "next/link";
 import Container from "../common/GlobalContainer";
+import { Button } from "../ui/button";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Header() {
   const [isFixed, setIsFixed] = useState(false);
   const [open, setOpen] = useState(false);
+  const { data: session } = useSession();
 
   useEffect(() => {
     let lastScrollY = 0;
 
     const handleScroll = () => {
       if (window.scrollY > lastScrollY && window.scrollY > 10) {
-        // scrolling down
         setIsFixed(true);
       } else if (window.scrollY < lastScrollY && window.scrollY < 10) {
-        // scrolling back up
         setIsFixed(false);
       }
       lastScrollY = window.scrollY;
@@ -29,6 +30,7 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <Container>
       <div className="h-[107px] lg:h-20" />
@@ -75,14 +77,40 @@ export default function Header() {
               </nav>
             </SheetContent>
           </Sheet>
-          <Link href="/auth/login" className="no-underline cursor-pointer ">
-            <User
-              className={clsx(
-                "w-6 h-6 hover:text-yellow-400",
-                !isFixed ? "text-white" : "text-black"
-              )}
-            />
-          </Link>
+
+          {/* If logged in */}
+          {session ? (
+            <div className="flex items-center space-x-2">
+              <Link href="/dashboard" className="no-underline cursor-pointer">
+                <User
+                  className={clsx(
+                    "w-6 h-6 hover:text-yellow-400",
+                    !isFixed ? "text-white" : "text-black"
+                  )}
+                />
+              </Link>
+              <Button
+                variant="outline"
+                className="ml-2"
+                onClick={() => signOut({ callbackUrl: "/" })}
+              >
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <Link
+              href="/auth/login"
+              className="no-underline cursor-pointer flex items-center"
+            >
+              <User
+                className={clsx(
+                  "w-6 h-6 hover:text-yellow-400",
+                  !isFixed ? "text-white" : "text-black"
+                )}
+              />
+              <span className="ml-2 text-sm">Login</span>
+            </Link>
+          )}
         </div>
       </header>
     </Container>
