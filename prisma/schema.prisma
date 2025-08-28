@@ -1,0 +1,131 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Users {
+  id                        String    @id @default(auto()) @map("_id") @db.ObjectId
+  firstName                 String
+  lastName                  String
+  email                     String    @unique
+  role                      UserRole  @default(user)
+  phoneNumber               String    @unique
+  alternateNumber           String?
+  password                  String
+  isVerified                Boolean   @default(false)
+  isBlocked                 Boolean   @default(false)
+  isActive                  Boolean   @default(true)
+  images                    Images[]
+  passwordResetToken        String?
+  passwordResetTokenExpires DateTime?
+  verificationToken         String?
+  verificationTokenExpires  DateTime?
+}
+
+enum UserRole {
+  superadmin
+  admin
+  user
+}
+
+model Consultations {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  phone     String
+  state     String
+  details   String
+  status    String   @default("PENDING") // PENDING or CONTACTED
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonials {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  name       String
+  role       String
+  image      String
+  quote      String
+  isArchived Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+enum ProjectStatus {
+  ACTIVE
+  NEAR_COMPLETION
+  COMPLETED
+}
+
+enum ProjectType {
+  RESIDENTIAL
+  COMMERCIAL
+  INDUSTRIAL
+  INSTITUTIONAL
+  INFRASTRUCTURE
+  MIXED_USE
+}
+
+model Projects {
+  id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  projectName    String
+  projectTagline String?
+  projectType    ProjectType
+  clientName     String?
+  contractorName String?
+  architectName  String?
+  location       String
+  startDate      DateTime?
+  completionDate DateTime?
+  estimatedCost  Float?
+
+  overview   String
+  objectives String[] // Array of strings
+
+  keyFeatures      KeyFeature[] // Array of objects with title + description
+  technologiesUsed String[]
+
+  imageGallery   ImageGallery[]
+  youtubeLinks   String[]
+  instagramLinks String[]
+  status         ProjectStatus  @default(ACTIVE)
+  isArchived     Boolean        @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+type KeyFeature {
+  title       String
+  description String
+}
+
+type ImageGallery {
+  url    String
+  fileId String
+}
+
+model Solutions {
+  id          String         @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  isArchived  Boolean        @default(false)
+  image       ImageGallery[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Images {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  publicId    String
+  category    String  @default("general")
+  description String?
+  createdBy   Users   @relation(fields: [userId], references: [id])
+  userId      String  @db.ObjectId
+}
