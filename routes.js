@@ -3,7 +3,7 @@
  * These routes do not require authentication
  * @type {string[]}
  */
-export const publicRoutes = ["/", "/about-us", "/services", "/our-works", "/our-works/:id"];
+export const publicRoutes = ["/", "/about-us", "/services", "/our-works", "/our-works/:id", "interior-gallery"];
 
 /**
  * An array of routes that are used for authenticationS

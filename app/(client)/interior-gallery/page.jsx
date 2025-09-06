@@ -3,6 +3,12 @@
 import { useEffect, useState } from "react";
 import Container from "@/components/common/GlobalContainer";
 import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { X } from "lucide-react";
 
 export default function InteriorGalleryPage() {
@@ -36,7 +42,7 @@ export default function InteriorGalleryPage() {
   };
 
   return (
-    <section className="bg-gray-100 text-gray-800 pt-16 pb-20">
+    <section className="bg-gray-100 py-20">
       <Container>
         <div className="px-6 text-center">
           <h2 className="text-4xl font-extrabold mb-12">
@@ -48,24 +54,32 @@ export default function InteriorGalleryPage() {
           ) : images.length === 0 ? (
             <p>No images available.</p>
           ) : (
-            <div className="columns-2 sm:columns-3 md:columns-4 gap-4">
-              {images.map((img, index) => (
-                <div
-                  key={index}
-                  className="mb-4 break-inside-avoid rounded-xl overflow-hidden shadow hover:shadow-lg transition hover:scale-105 duration-300 cursor-pointer"
-                  onClick={() => {
-                    setPhotoIndex(index);
-                    setOpen(true);
-                  }}
-                >
-                  <img
-                    src={img.url}
-                    alt="Interior"
-                    className="w-full h-auto object-cover"
-                  />
-                </div> // ✅ Closed the div properly here
-              ))}
-            </div>
+            <TooltipProvider>
+              <div className="columns-2 sm:columns-3 md:columns-4 gap-4">
+                {images.map((img, index) => (
+                  <Tooltip key={index}>
+                    <TooltipTrigger asChild>
+                      <div
+                        className="mb-4 break-inside-avoid rounded-xl overflow-hidden shadow hover:shadow-lg transition hover:scale-105 duration-300 cursor-pointer"
+                        onClick={() => {
+                          setPhotoIndex(index);
+                          setOpen(true);
+                        }}
+                      >
+                        <img
+                          src={img.url}
+                          alt="Interior"
+                          className="w-full h-auto object-cover"
+                        />
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Click to open Gallery</p>
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+              </div>
+            </TooltipProvider>
           )}
 
           {/* Shadcn Dialog for Lightbox */}
