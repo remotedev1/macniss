@@ -50,7 +50,7 @@ const projectSchema = z.object({
     { required_error: "Project type is required" }
   ),
   location: z.string().min(1, "Location is required"),
-  status: z.enum(["ACTIVE", "NEAR_COMPLETION", "COMPLETED"], {
+  status: z.enum(["ACTIVE", "COMPLETED"], {
     required_error: "Status is required",
   }),
   overview: z.string().min(1, "Overview is required"),
@@ -282,7 +282,7 @@ export default function ProjectsTable() {
                   name="projectName"
                   render={({ field }) => (
                     <FormItem className="col-span-2 sm:col-span-1">
-                      <FormLabel>Project Name</FormLabel>
+                      <FormLabel>Project Name *</FormLabel>
                       <FormControl>
                         <Input placeholder="Project Name" {...field} />
                       </FormControl>
@@ -296,7 +296,7 @@ export default function ProjectsTable() {
                   name="projectType"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Project Type</FormLabel>
+                      <FormLabel>Project Type *</FormLabel>
                       <Select
                         value={field.value}
                         onValueChange={field.onChange}
@@ -329,7 +329,7 @@ export default function ProjectsTable() {
                   name="location"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Location</FormLabel>
+                      <FormLabel>Location *</FormLabel>
                       <FormControl>
                         <Input placeholder="Location" {...field} />
                       </FormControl>
@@ -343,7 +343,7 @@ export default function ProjectsTable() {
                   name="status"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Status</FormLabel>
+                      <FormLabel>Status *</FormLabel>
                       <Select
                         value={field.value}
                         onValueChange={field.onChange}
@@ -352,13 +352,11 @@ export default function ProjectsTable() {
                           <SelectValue placeholder="Select status" />
                         </SelectTrigger>
                         <SelectContent>
-                          {["ACTIVE", "NEAR_COMPLETION", "COMPLETED"].map(
-                            (s) => (
-                              <SelectItem key={s} value={s}>
-                                {s}
-                              </SelectItem>
-                            )
-                          )}
+                          {["ACTIVE", "COMPLETED"].map((s) => (
+                            <SelectItem key={s} value={s}>
+                              {s}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                       <FormMessage />

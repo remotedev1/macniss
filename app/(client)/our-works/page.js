@@ -11,7 +11,6 @@ import Container from "@/components/common/GlobalContainer";
 // Tabs configuration
 const tabOptions = [
   { key: "COMPLETED", label: "Completed" },
-  { key: "NEAR_COMPLETION", label: "Near Completion" },
   { key: "ACTIVE", label: "Active" },
   { key: "GALLERY", label: "Gallery" },
 ];

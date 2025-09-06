@@ -82,7 +82,12 @@ export default function InteriorGalleryManager() {
         body: formData,
       });
 
-      if (!res.ok) throw new Error("Failed to save gallery");
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || "Failed to save gallery");
+      }
+
+      form.reset({ imageGallery: [] });
 
       await fetchGallery();
       Swal.fire(
@@ -160,13 +165,13 @@ export default function InteriorGalleryManager() {
             {galleryImages.map((data, idx) => (
               <div
                 key={idx}
-                className="relative group h-40 w-full rounded-lg overflow-hidden"
+                className="relative group h-40 bg-white rounded-lg overflow-hidden"
               >
                 <Image
                   src={data.url}
                   alt="Interior"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
                 <Button
                   size="sm"

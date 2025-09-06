@@ -58,7 +58,6 @@ model Testimonials {
 
 enum ProjectStatus {
   ACTIVE
-  NEAR_COMPLETION
   COMPLETED
 }
 
