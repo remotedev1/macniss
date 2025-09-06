@@ -39,7 +39,7 @@ export default function InteriorGallerySection({ showButton = true }) {
 
           {loading ? (
             <div className="grid gap-8 md:grid-cols-4">
-              {Array.from({ length: 8 }).map((_, i) => (
+              {Array.from({ length: 3 }).map((_, i) => (
                 <CardSkeleton key={i} withMedia />
               ))}
             </div>
