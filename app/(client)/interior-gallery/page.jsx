@@ -10,6 +10,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { X } from "lucide-react";
+import Image from "next/image";
 
 export default function InteriorGalleryPage() {
   const [images, setImages] = useState([]);
@@ -54,32 +55,26 @@ export default function InteriorGalleryPage() {
           ) : images.length === 0 ? (
             <p>No images available.</p>
           ) : (
-            <TooltipProvider>
-              <div className="columns-2 sm:columns-3 md:columns-4 gap-4">
-                {images.map((img, index) => (
-                  <Tooltip key={index}>
-                    <TooltipTrigger asChild>
-                      <div
-                        className="mb-4 break-inside-avoid rounded-xl overflow-hidden shadow hover:shadow-lg transition hover:scale-105 duration-300 cursor-pointer"
-                        onClick={() => {
-                          setPhotoIndex(index);
-                          setOpen(true);
-                        }}
-                      >
-                        <img
-                          src={img.url}
-                          alt="Interior"
-                          className="w-full h-auto object-cover"
-                        />
-                      </div>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Click to open Gallery</p>
-                    </TooltipContent>
-                  </Tooltip>
+              <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+                {images.slice(0, 8).map((img, index) => (
+                  <div
+                    key={index}
+                    onClick={() => {
+                      setPhotoIndex(index);
+                      setOpen(true);
+                    }}
+                    className="relative rounded-xl overflow-hidden shadow hover:shadow-lg transition hover:scale-105 duration-300"
+                    style={{ aspectRatio: "4/3" }} // Or whichever aspect ratio your images have
+                  >
+                    <Image
+                      src={img.url}
+                      alt="Interior image"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                 ))}
               </div>
-            </TooltipProvider>
           )}
 
           {/* Shadcn Dialog for Lightbox */}

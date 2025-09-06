@@ -45,7 +45,7 @@ export default function InteriorGalleryManager() {
       if (!res.ok) throw new Error("Failed to fetch interior gallery");
       const data = await res.json();
 
-      setGalleryImages(data[0]?.images ?? []);
+      setGalleryImages(data?.images ?? []);
       form.reset({
         imageGallery: (data?.images ?? []).map((img) => ({
           url: img.url,

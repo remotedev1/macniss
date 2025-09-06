@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Container from "@/components/common/GlobalContainer";
 import CardSkeleton from "@/components/common/CardSkeleton";
+import Image from "next/image";
 
 export default function InteriorGallerySection({ showButton = true }) {
   const [images, setImages] = useState([]);
@@ -33,7 +34,7 @@ export default function InteriorGallerySection({ showButton = true }) {
     <section className="bg-gray-100 text-gray-800 pt-16">
       <Container>
         <div className="px-6 text-center">
-          <h2 className="text-4xl font-extrabold mb-12">
+          <h2 className="text-4xl font-extrabold mb-12 text-black">
             Interior <span className="text-yellow-500">Gallery</span>
           </h2>
 
@@ -46,16 +47,19 @@ export default function InteriorGallerySection({ showButton = true }) {
           ) : images.length === 0 ? (
             <p>No images available.</p>
           ) : (
-            <div className="columns-2 sm:columns-3 md:columns-4 gap-4">
-              {images.map((img, index) => (
+            <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+              {images.slice(0, 8).map((img, index) => (
                 <div
                   key={index}
-                  className="mb-4 break-inside-avoid rounded-xl overflow-hidden shadow hover:shadow-lg transition hover:scale-105 duration-300"
+                  className="relative rounded-xl overflow-hidden shadow hover:shadow-lg transition hover:scale-105 duration-300"
+                  style={{ aspectRatio: "4/3" }} // Or whichever aspect ratio your images have
                 >
-                  <img
+                  <Image  
                     src={img.url}
                     alt="Interior image"
-                    className="w-full h-auto object-cover"
+                    fill // enables auto-resizing; requires parent relative + set aspect ratio
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover"
                   />
                 </div>
               ))}
