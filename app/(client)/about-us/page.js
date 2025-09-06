@@ -9,21 +9,21 @@ const aboutTimeline = [
     date: "June 2019",
     location: "Bengaluru, Karnataka",
     description:
-      "Macniss.Com embarked on its journey in Karnataka, marking the beginning of its mission to revolutionize the construction industry with innovative and comprehensive solutions.",
+      "macnissbuilders.in embarked on its journey in Karnataka, marking the beginning of its mission to revolutionize the construction industry with innovative and comprehensive solutions.",
   },
   {
     id: 2,
     date: "May 2022",
     location: "Mysore, Karnataka",
     description:
-      "Macniss.Com expanded its operations to Mysore, introducing cutting-edge construction technologies and sustainable practices.",
+      "macnissbuilders.in expanded its operations to Mysore, introducing cutting-edge construction technologies and sustainable practices.",
   },
   {
     id: 3,
     date: "May 2024",
     location: "Kodagu, Karnataka",
     description:
-      "Macniss.Com further solidified its presence in Kodagu, focusing on eco-friendly construction practices and community engagement.",
+      "macnissbuilders.in further solidified its presence in Kodagu, focusing on eco-friendly construction practices and community engagement.",
   },
 ];
 
@@ -50,7 +50,7 @@ export default function AboutSection() {
         {/* Timeline Section */}
         <div className="max-w-[70vw] mx-auto py-16 px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black">
-            The Journey of <span className="text-yellow-500">Macniss.com</span>
+            The Journey of <span className="text-yellow-500">macnissbuilders.in</span>
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8 items-center">

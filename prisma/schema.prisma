@@ -120,6 +120,13 @@ model Solutions {
   updatedAt   DateTime       @updatedAt
 }
 
+model InteriorGallery {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  images    Json // stores array of { url, fileId }
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Images {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   title       String

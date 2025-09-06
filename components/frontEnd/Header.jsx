@@ -62,17 +62,17 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="top" className="w-full h-full">
               <nav className="space-y-4 flex flex-col items-center justify-center h-full text-lg">
-                <a href="#" className="block hover:text-yellow-400">
+                <a href="/" className="block hover:text-yellow-400">
                   Home
                 </a>
-                <a href="#" className="block hover:text-yellow-400">
+                <a href="/about-us" className="block hover:text-yellow-400">
                   About
                 </a>
-                <a href="#" className="block hover:text-yellow-400">
+                <a href="/services" className="block hover:text-yellow-400">
                   Services
                 </a>
-                <a href="#" className="block hover:text-yellow-400">
-                  Contact
+                <a href="/our-works" className="block hover:text-yellow-400">
+                  Our Works
                 </a>
               </nav>
             </SheetContent>

@@ -62,6 +62,11 @@ export const sidebarData = {
           icon: Megaphone,
         },
         {
+          title: "Interior Gallery",
+          url: "/dashboard/interior-gallery",
+          icon: Megaphone,
+        },
+        {
           title: "Testimonials",
           url: "/dashboard/testimonials",
           icon: Megaphone,

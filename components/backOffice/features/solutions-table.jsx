@@ -64,8 +64,19 @@ export default function SolutionsDashboard() {
       const formData = new FormData();
 
       Object.entries(values).forEach(([key, val]) => {
-        if (key === "image") {
-          val.forEach((file) => formData.append("image", file));
+        if (key === "imageGallery") {
+          val.forEach((file) => {
+            // If it’s a File, append directly
+            if (file instanceof File) {
+              formData.append("imageGallery", file);
+            } else {
+              // If it’s an existing URL object/string
+              formData.append(
+                "imageGallery",
+                typeof file === "string" ? file : JSON.stringify(file)
+              );
+            }
+          });
         } else {
           formData.append(
             key,
@@ -74,23 +85,17 @@ export default function SolutionsDashboard() {
         }
       });
 
-      const url = editingId ? `/api/solutions/${editingId}` : "/api/solutions";
-      const method = editingId ? "PATCH" : "POST";
+      const url = "/api/interior-gallery";
+      const method = "PATCH"; // update gallery in place
       const res = await fetch(url, { method, body: formData });
-      if (!res.ok) throw new Error("Failed to save solution");
 
-      setEditingId(null);
-      form.reset({
-        title: "",
-        description: "",
-        image: "",
-      });
+      if (!res.ok) throw new Error("Failed to save gallery");
 
-      fetchSolutions();
+      await fetchGallery();
 
       Swal.fire(
-        editingId ? "Updated!" : "Created!",
-        `Solution ${editingId ? "updated" : "created"} successfully.`,
+        "Updated!",
+        "Interior gallery updated successfully.",
         "success"
       );
     } catch (err) {

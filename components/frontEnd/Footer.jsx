@@ -10,12 +10,12 @@ export default function Footer() {
           {/* Left Section - Logo + About */}
           <div>
             <h2 className="text-2xl font-bold text-yellow-400">
-              MACNISS<span className="text-white">.COM</span>
+              MACNISSBUILDERS<span className="text-white">.COM</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed">
-              At Macniss.Com, we blend functionality with aesthetics to deliver
-              customized, efficient home, commercial construction. Our team
-              specializes in building houses tailored to your lifestyle,
+              At Macnissbuilders.in, we blend functionality with aesthetics to
+              deliver customized, efficient home, commercial construction. Our
+              team specializes in building houses tailored to your lifestyle,
               creating a home that&apos;s truly personal to you.
             </p>
             <div className=" max-w-xl py-5">
@@ -23,12 +23,12 @@ export default function Footer() {
                 {[
                   {
                     title: "Corporate Office (Bangalore Branch):",
-                    address: "Macniss.Com | Bangalore",
+                    address: "Macnissbuilders.in | Bangalore",
                     link: "#",
                   },
                   {
                     title: "Kodagu Branch:",
-                    address: "Macniss.Com | Gonicoppa",
+                    address: "Macnissbuilders.in | Gonicoppa",
                     link: "#",
                   },
                 ].map((branch, index) => (
@@ -110,7 +110,8 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-400">
-          &copy; {new Date().getFullYear()} Macniss.Com — All rights reserved.
+          &copy; {new Date().getFullYear()} Macnissbuilders.in — All rights
+          reserved.
         </div>
       </Container>
     </footer>

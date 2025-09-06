@@ -44,7 +44,7 @@ export default function ServicesWeOffer({ show = false }) {
                   <CardSkeleton key={i} withMedia />
                 ))
               : // 👇 Show actual services when loaded
-                services.map((service, index) => (
+                services.slice(0, 4).map((service, index) => (
                   <div
                     key={index}
                     className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition text-left hover:scale-105 duration-300"

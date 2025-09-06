@@ -8,10 +8,10 @@ export default function WhyChoose({ about = false }) {
       <Container>
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl font-extrabold mb-4">
-            Why Choose <span className="text-yellow-500">Macniss.Com</span>
+            Why Choose <span className="text-yellow-500">Macnissbuilders.in</span>
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto mb-12">
-            At Macniss.Com, we turn your dream home into reality with the
+            At Macnissbuilders.in, we turn your dream home into reality with the
             expertise of our skilled team and a hassle-free process. From
             initial design to final delivery, we guarantee quality and
             transparency at every stage. Our mission is to create homes that
