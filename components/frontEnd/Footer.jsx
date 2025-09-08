@@ -28,7 +28,7 @@ export default function Footer() {
                   },
                   {
                     title: "Kodagu Branch:",
-                    address: "Macnissbuilders.in | Gonicoppa",
+                    address: "Macnissbuilders.in | Gonikoppa",
                     link: "#",
                   },
                 ].map((branch, index) => (
