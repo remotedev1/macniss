@@ -35,9 +35,17 @@ export const ForgotPasswordForm = () => {
     setError("");
     setSuccess("");
     startTransition(() => {
-      forgotPassword(values).then((res) => {
-        if (res?.success) setSuccess(res.success);
-      });
+      forgotPassword(values)
+        .then((res) => {
+          if (res?.error) {
+            setError(res.error);
+            return;
+          }
+          if (res?.success) setSuccess(res.success);
+        })
+        .catch(() => {
+          setError("Unable to request a password reset right now. Please try again later.");
+        });
     });
   };
 

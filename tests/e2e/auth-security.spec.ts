@@ -20,11 +20,42 @@ test.describe('authentication and API security', () => {
   });
 
   test('invalid login is rejected without exposing account details', async ({ page }) => {
+    let callbackCount = 0;
+    let signalSecondAttempt: () => void = () => {};
+    let releaseSecondAttempt: () => void = () => {};
+    const secondAttemptStarted = new Promise<void>((resolve) => {
+      signalSecondAttempt = resolve;
+    });
+    const secondAttemptGate = new Promise<void>((resolve) => {
+      releaseSecondAttempt = resolve;
+    });
+
+    await page.route('**/api/auth/callback/credentials**', async (route) => {
+      callbackCount += 1;
+      if (callbackCount === 2) {
+        signalSecondAttempt();
+        await secondAttemptGate;
+      }
+      await route.continue();
+    });
+
     await page.goto('/auth/login');
     await page.getByLabel(/email/i).fill('not-a-user@example.com');
     await page.getByLabel(/password/i).fill('InvalidPassword123!');
-    await page.getByRole('button', { name: /^sign in$/i }).click();
-    await expect(page.getByText(/invalid email or password|authentication failed/i).first()).toBeVisible();
+    const error = page.getByText(/invalid email or password|authentication failed/i).first();
+    const signInButton = page.getByRole('button', { name: /^sign in$/i });
+
+    await signInButton.click();
+    await expect(error).toBeVisible();
+
+    await page.getByLabel(/password/i).fill('AnotherInvalidPassword123!');
+    await expect(error).toBeVisible();
+
+    await signInButton.click();
+    await secondAttemptStarted;
+    await expect(error).toBeHidden();
+    releaseSecondAttempt();
+    await expect(error).toBeVisible();
   });
 
   for (const endpoint of ['/api/projects', '/api/solutions', '/api/testimonials', '/api/interior-gallery']) {

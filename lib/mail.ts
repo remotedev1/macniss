@@ -16,8 +16,11 @@ export async function sendPasswordResetEmail({ email, token }: SecurityEmail): P
   const url = `${baseUrl()}/auth/reset-password?token=${encodeURIComponent(token)}`;
   const resend = client();
   if (!resend) {
-    if (process.env.NODE_ENV !== "production") console.info(`[DEV] Password reset for ${email}: ${url}`);
-    return true;
+    if (process.env.NODE_ENV !== "production") {
+      console.info(`[DEV] Password reset for ${email}: ${url}`);
+      return true;
+    }
+    return false;
   }
   const result = await resend.emails.send({
     from: process.env.AUTH_EMAIL_FROM || "onboarding@resend.dev",
