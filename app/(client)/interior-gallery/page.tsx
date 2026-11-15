@@ -5,6 +5,13 @@ import EditorialPhoto from "@/components/frontEnd/modern/EditorialPhoto";
 import InteriorPortfolio from "@/components/frontEnd/modern/InteriorPortfolio";
 import { Stagger, StaggerItem } from "@/components/frontEnd/modern/Stagger";
 import { unsplash } from "@/components/frontEnd/modern/Unsplash";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata(
+  "Interior Architecture & Fit-Out",
+  "Explore interior architecture, fit-out and finish studies focused on materials, light, joinery and detail across Macniss projects.",
+  "/interior-gallery",
+);
 
 const ideas = [
   ["01", "Material", "Finishes are selected for how they age, perform and sit together—not only how they look on day one."],

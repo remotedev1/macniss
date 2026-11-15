@@ -6,6 +6,13 @@ import ImageReveal from "@/components/frontEnd/modern/ImageReveal";
 import Parallax from "@/components/frontEnd/modern/Parallax";
 import { Stagger, StaggerItem } from "@/components/frontEnd/modern/Stagger";
 import { unsplash } from "@/components/frontEnd/modern/Unsplash";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata(
+  "About Macniss",
+  "Learn how Macniss approaches property development and construction across Bengaluru, Kodagu and Karnataka, from early site decisions through delivery and interiors.",
+  "/about-us",
+);
 
 const principles = [
   ["01", "Clarity before commitment", "We define scope, priorities, responsibilities and practical constraints early so the project begins with fewer unknowns.", unsplash.aboutFacade],

@@ -5,6 +5,13 @@ import ServicesWeOffer from "@/components/frontEnd/ServicesWeOffer";
 import EditorialPhoto from "@/components/frontEnd/modern/EditorialPhoto";
 import { Stagger, StaggerItem } from "@/components/frontEnd/modern/Stagger";
 import { unsplash } from "@/components/frontEnd/modern/Unsplash";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata(
+  "Construction Services",
+  "Explore residential, commercial, estate and interior construction services across Karnataka, including feasibility, design coordination, execution and handover.",
+  "/services",
+);
 
 const process = [
   ["01", "Feasibility", "Site, brief, budget and constraints are clarified before expensive decisions are made."],

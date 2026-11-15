@@ -1,8 +1,8 @@
 import { db } from "@/lib/db";
+import { SITE_URL } from "@/lib/seo";
 
 export default async function sitemap() {
-  const baseUrl = (process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000").replace(/\/$/, "");
-  const now = new Date();
+  const baseUrl = SITE_URL;
   const staticPages = [
     ["", 1, "weekly"],
     ["/about-us", 0.8, "monthly"],
@@ -12,7 +12,6 @@ export default async function sitemap() {
     ["/contact", 0.8, "monthly"],
   ].map(([path, priority, changeFrequency]) => ({
     url: `${baseUrl}${path}`,
-    lastModified: now,
     changeFrequency,
     priority,
   }));

@@ -1,5 +1,6 @@
+import { SITE_URL } from "@/lib/seo";
+
 export default function robots() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   return {
     rules: [
       {
@@ -8,6 +9,6 @@ export default function robots() {
         disallow: ["/dashboard/", "/settings/", "/auth/", "/setup", "/api/"],
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

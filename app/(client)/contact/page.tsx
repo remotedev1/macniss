@@ -4,6 +4,13 @@ import PublicPageHero from "@/components/frontEnd/modern/PublicPageHero";
 import EditorialPhoto from "@/components/frontEnd/modern/EditorialPhoto";
 import ConsultationForm from "@/components/frontEnd/consultation-form";
 import { unsplash } from "@/components/frontEnd/modern/Unsplash";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata(
+  "Contact Macniss Builders",
+  "Discuss a residential, commercial or estate construction project in Bengaluru, Kodagu or elsewhere in Karnataka with the Macniss team.",
+  "/contact",
+);
 
 export default function ContactPage() {
   return (

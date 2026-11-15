@@ -4,42 +4,40 @@ import "./fonts.css";
 import "./globals.css";
 import { Providers } from "./Providers";
 import PageLoader from "@/components/common/PageLoader";
+import { absoluteUrl, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const metadata = {
-  title:
-    "Macniss | Property Development, Construction & Interiors in Karnataka",
+  title: {
+    default: "Macniss Builders | Property Development & Construction in Karnataka",
+    template: "%s | Macniss Builders",
+  },
   description:
-    "Macniss is a property development and construction company delivering residential, commercial and estate projects across Karnataka—from site strategy and design coordination to construction, interiors and handover.",
+    "Macniss Builders delivers residential, commercial and estate projects in Bengaluru, Kodagu and across Karnataka, from planning through construction and handover.",
   keywords: [
     "Macniss Builders",
-    "construction company Bangalore",
-    "construction company kodagu",
-    "villa builders Bangalore",
-    "commercial builders",
-    "turnkey construction",
-    "residential construction",
-    "home builders in Bangalore",
-    "home builders in kodagu",
-    "interior designers in Bangalore",
-    "interior designers in kodagu",
+    "construction company Bengaluru",
+    "property development Karnataka",
+    "residential construction Bengaluru",
+    "commercial construction Karnataka",
+    "estate construction Kodagu",
+    "interior fit-out Bengaluru",
   ],
-  metadataBase: new URL("https://macnissbuilders.in"),
+  metadataBase: new URL(SITE_URL),
   alternates: {
-    canonical: "https://macnissbuilders.in",
+    canonical: SITE_URL,
   },
   openGraph: {
-    title:
-      "Macniss Builders Private Limited | Trusted Home & Commercial Construction in Bangalore",
+    title: "Macniss Builders | Property Development & Construction in Karnataka",
     description:
-      "Building dreams with quality & trust. Explore residential and commercial construction services with Macniss Builders Private Limited, Bangalore.",
-    url: "https://macnissbuilders.in",
-    siteName: "Macniss Builders Private Limited",
+      "Residential, commercial and estate projects in Bengaluru, Kodagu and across Karnataka, from planning through construction and handover.",
+    url: SITE_URL,
+    siteName: SITE_NAME,
     images: [
       {
-        url: "/website-thumbnail.jpg",
+        url: absoluteUrl("/website-thumbnail.jpg"),
         width: 1200,
         height: 630,
-        alt: "Macniss Builders Private Limited",
+        alt: SITE_NAME,
       },
     ],
     locale: "en_IN",
@@ -47,12 +45,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Macniss Builders Private Limited | Trusted Construction in Bangalore",
+    title: "Macniss Builders | Property Development & Construction in Karnataka",
     description:
-      "Residential & commercial construction in Bangalore with guaranteed quality and on-time delivery.",
-    images: ["/website-thumbnail.jpg"],
-    creator: "@macnissbuilders", // update if you have a Twitter handle
+      "Residential, commercial and estate projects in Bengaluru, Kodagu and across Karnataka.",
+    images: [absoluteUrl("/website-thumbnail.jpg")],
   },
   icons: {
     icon: "/favicon.ico",

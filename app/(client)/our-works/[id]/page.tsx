@@ -1,17 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import { ArrowLeft, ArrowUpRight, MapPin } from "lucide-react";
 import { db } from "@/lib/db";
 import EditorialPhoto from "@/components/frontEnd/modern/EditorialPhoto";
 import { unsplash } from "@/components/frontEnd/modern/Unsplash";
+import { pageMetadata } from "@/lib/seo";
 
-async function getProject(id) {
+const getProject = cache(async (id) => {
   try {
     return await db.projects.findUnique({ where: { id, isArchived: false } });
   } catch {
     return null;
   }
+});
+
+export async function generateMetadata({ params }) {
+  const project = await getProject(params.id);
+  if (!project) {
+    return {
+      title: "Project not found",
+      description: "This project is unavailable.",
+      robots: { index: false, follow: true },
+    };
+  }
+
+  const description = project.projectTagline || project.overview || `Explore ${project.projectName}, a Macniss ${project.projectType.toLowerCase()} project in ${project.location}.`;
+  return pageMetadata(
+    project.projectName,
+    description.length > 160 ? `${description.slice(0, 157).trimEnd()}...` : description,
+    `/our-works/${project.id}`,
+  );
 }
 
 async function getRelated(project) {
