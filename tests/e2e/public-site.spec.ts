@@ -8,6 +8,12 @@ test.describe('public developer website', () => {
     await expect(page.getByText(/Macniss/i).first()).toBeVisible();
   });
 
+  test('client access is available in the footer, not the header', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('header').getByRole('link', { name: /client access|dashboard/i })).toHaveCount(0);
+    await expect(page.locator('footer').getByRole('link', { name: 'Client access' })).toHaveAttribute('href', '/auth/login');
+  });
+
   const pages: [string, RegExp][] = [
     ['/about-us', /develop places|about macniss/i],
     ['/services', /development partner|services & capabilities/i],
