@@ -1,0 +1,25 @@
+/** Curated Unsplash photo URLs are demo artwork only; never substitute for a CMS image. */
+const photo = (id: string, width = 1600) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=85`;
+export const unsplash = {
+  construction: photo('photo-1504307651254-35680f356dfd'),
+  exterior: photo('photo-1600607687920-4e2a09cf159d'),
+  residence: photo('photo-1600607687939-ce8a6c25118c'),
+  architecture: photo('photo-1487958449943-2429e8be8625'),
+  house: photo('photo-1600566753190-17f0baa2a6c3'),
+  commercial: photo('photo-1497366811353-6870744d04b2'),
+  estate: photo('photo-1600596542815-ffad4c1539a9'),
+  interior: photo('photo-1600210492486-724fe5c67fb0'),
+  living: photo('photo-1600607687920-4e2a09cf159d'),
+  kitchen: photo('photo-1600489000022-c2086d79f9d4'),
+  detail: photo('photo-1600607687920-4e2a09cf159d'),
+  aboutHero: photo('photo-1511818966892-d7d671e672a2'),
+  aboutFacade: photo('photo-1512917774080-9991f1c4c750'),
+  aboutWorkspace: photo('photo-1505693416388-ac5ce068fe85'),
+  aboutCourtyard: photo('photo-1494526585095-c41746248156'),
+  aboutMaterial: photo('photo-1460317442991-0ec209397118'),
+  serviceHero: photo('photo-1487958449943-2429e8be8625'),
+  serviceStructure: photo('photo-1511818966892-d7d671e672a2'),
+  portfolioHero: photo('photo-1600596542815-ffad4c1539a9'),
+  galleryHero: photo('photo-1600210492486-724fe5c67fb0'),
+  contactHero: photo('photo-1600607687920-4e2a09cf159d'),
+} as const;

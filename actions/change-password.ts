@@ -1,0 +1,16 @@
+"use server";
+import { requireTrustedMutationOrigin } from "@/lib/security/mutation-origin";
+import { db } from "@/lib/db";
+import { auth, signOut } from "@/auth";
+import { ChangePasswordSchema } from "@/schemas";
+import { hashPassword, verifyPassword } from "@/lib/auth-secure/password";
+import { revokeAllSessions } from "@/lib/auth-secure/session-security";
+import { writeAudit } from "@/lib/auth-secure/audit";
+export const changePassword = async (values) => {await requireTrustedMutationOrigin();
+  const parsed=ChangePasswordSchema.safeParse(values); if(!parsed.success)return{error:parsed.error.issues[0]?.message||"Invalid fields."};
+  const session=await auth(); if(!session?.user?.id||session.user.invalidated)return{error:"Authentication required."};
+  const user=await db.users.findUnique({where:{id:session.user.id}}); if(!user||!(await verifyPassword(parsed.data.oldPassword,user.password)))return{error:"Old password is incorrect."};
+  await db.users.update({where:{id:user.id},data:{password:await hashPassword(parsed.data.newPassword),mustChangePassword:false,failedLoginAttempts:0,lockedUntil:null}});
+  await revokeAllSessions(user.id); await writeAudit({userId:user.id,action:"PASSWORD_CHANGED",entity:"Users",entityId:user.id,description:"Password changed; all sessions revoked"});
+  return { success:"Password updated. Please sign in again." };
+};
